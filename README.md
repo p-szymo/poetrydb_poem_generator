@@ -12,9 +12,11 @@
 
 
 ## Next steps
-* Play around with regex to only strip certain characters from the raw poems string. For example, keep hyphens, apostrophes, etc. within words.
+* ~~Play around with regex to only strip certain characters from the raw poems string. For example, keep hyphens, apostrophes, etc. within words.~~
 
-  * Possibly increase frequency of '\t' by re-defining it as 2 spaces instead of 4.
+  * ~~Possibly increase frequency of '\t' by re-defining it as 2 spaces instead of 4.~~
+
+* Possibly drop some single characters (i.e. all but 'a' and 'i') 
   
 * Apply Allison Parrish's [pronouncing](https://github.com/aparrish/pronouncingpy) to certain words.
 
@@ -26,3 +28,4 @@
 * **poems_dictionary.json** - the hero poetry dictionary.
 * **poems_dictionary.txt** - backed up as a text file.
 * **poems_raw.txt** - the initial string compiled from PoetryDB.
+* **scrap_files** folder - backups, old workbooks, old texts/jsons, and other scraps
