@@ -16,7 +16,7 @@
 
   * ~~Possibly increase frequency of '\t' by re-defining it as 2 spaces instead of 4.~~
 
-* Possibly drop some single characters (i.e. all but 'a' and 'i') 
+* Possibly drop some single characters (i.e. all but 'a' and 'i') from the segmented word list.
   
 * Apply Allison Parrish's [pronouncing](https://github.com/aparrish/pronouncingpy) to certain words.
 
