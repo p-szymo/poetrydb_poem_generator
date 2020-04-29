@@ -32,6 +32,6 @@
 * **poems_raw.txt** - the initial string compiled from PoetryDB.
 * **scrap_files** folder - backups, old workbooks, old texts/jsons, and other scraps
 
-  * includes tokenized version of dictionary with some punctuation (poetic apostrophes and hyphens)
+  * includes NLTK-tokenized version of dictionary with some punctuation (poetic apostrophes and hyphens)
   
     * lacks some proper segmentation but not as oversegmented as the wordninja version
