@@ -30,8 +30,8 @@ def poem_grabber(title):
         poem = ' \n '.join(lines).lower()
         for mark in mod_punct:
             poem = poem.replace(mark, '') 
-        poem = poem.replace('  ', '\t ').replace('--', '').replace('—', '').replace('‘','').replace('’','').replace(
-                            "' ", " ").replace(" '", " ")
+        poem = poem.replace('  ', ' \t ').replace('--', '').replace('—', '').replace('‘','').replace('’','').replace(
+                            " ' ", " ").replace(" -", " ").replace("- ", " ")
     except:
         print(title)
         pass

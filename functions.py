@@ -36,7 +36,7 @@ def poem_grabber(title):
         lines = response.json()[0]['lines']
         poem = " \n ".join(lines).lower()
         poem = poem.translate(str.maketrans('', '', string.punctuation)).replace(
-            '  ', '\t ').replace('—', '').replace('‘','').replace('’','')
+            '  ', ' \t ').replace('—', '').replace('‘','').replace('’','')
     except:
         print(title)
         pass
