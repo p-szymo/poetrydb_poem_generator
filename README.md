@@ -16,16 +16,20 @@
 
   * ~~Possibly increase frequency of '\t' by re-defining it as 2 spaces instead of 4.~~
 
-* Possibly drop some single characters (i.e. all but 'a' and 'i') from the segmented word list.
+* ~~Possibly drop some single characters (i.e. all but 'a' and 'i') from the segmented word list.~~
   
-* Apply Allison Parrish's [pronouncing](https://github.com/aparrish/pronouncingpy) to certain words.
+* ~~Apply Allison Parrish's [pronouncing](https://github.com/aparrish/pronouncingpy) to certain words.~~
 
 
 
 ## List of files
 * **functions.py** - text file with functions, from api calls to the final poetry generator.
+* **RHYME_functions.py** - copy of the above file with minor adjustments and 3 new functions employing Allison Parrish's [pronouncing](https://github.com/aparrish/pronouncingpy) rhymer
 * **poem_generator_workbook.ipynb** - the main workbook, polished, from beginning to end. One can start by opening from the JSON file.
+* **RHYME_poem_generator_workbook.ipynb** - copy of the above file with minor adjustments and rhyming functions
 * **poems_dictionary.json** - the hero poetry dictionary.
 * **poems_dictionary.txt** - backed up as a text file.
 * **poems_raw.txt** - the initial string compiled from PoetryDB.
 * **scrap_files** folder - backups, old workbooks, old texts/jsons, and other scraps
+
+ * includes tokenized version with some punctuation (lacks proper segmentation but doesn't seem to be oversegmented)
