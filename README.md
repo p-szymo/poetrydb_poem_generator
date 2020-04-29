@@ -1,4 +1,4 @@
-# RUDIMENTARY POETRY GENERATOR
+# RUDIMENTARY POETRY GENERATOR aka auto_pometizer
 * Gathered all the poetry available from the PoetryDB into a text file as one long string (lines separated by ' \n ').
 
   * Created a dictionary with each word in the string as a key and a list of the words that immediately follow each of those key words in the string.
