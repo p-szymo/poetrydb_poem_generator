@@ -5,7 +5,7 @@
   
   * Had to do some switcharoo maneuvering to include '\n's and '\t's among the keys and within the values of the poem dictionary.
   
-* Created a function prompting users to input a word count (1000 or fewer words, *note: '\n's and '\t's are included in the count*)
+* Created a function prompting users to input a word count (1000 or fewer words, **note: '\n's and '\t's are included in the count**)
 
 * Poetry generator randomly chooses a first key, then a random word within that key's value, then a random word within that second word's value, until the word count is reached.
 
