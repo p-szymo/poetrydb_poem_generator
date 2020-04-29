@@ -32,4 +32,4 @@
 * **poems_raw.txt** - the initial string compiled from PoetryDB.
 * **scrap_files** folder - backups, old workbooks, old texts/jsons, and other scraps
 
- * includes tokenized version with some punctuation (lacks proper segmentation but doesn't seem to be oversegmented)
+  * includes tokenized version with some punctuation (lacks proper segmentation but doesn't seem to be oversegmented)
