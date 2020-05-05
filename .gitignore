@@ -35,3 +35,11 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Manually added
+.ipynb_checkpoints/
+__pycache__/
+
+poem_generator_workbook_punct_token-Copy1.ipynb
+poem_generator_workbook-Copy1.ipynb
+RHYME_poem_generator_workbook-Copy1.ipynb
