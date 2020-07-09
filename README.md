@@ -5,7 +5,7 @@ I created a dictionary with each word in the string as a key and a list of the w
   
 I created a function prompting users to input a word count (1000 or fewer words, **note: *\n*s and *\t*s are included in the count**).
 
-Then I turned it into an [app]([auto_pometizer](https://polar-earth-97611.herokuapp.com/)!
+Then I turned it into an [app](https://polar-earth-97611.herokuapp.com/)!
 
 
 ## How it works
