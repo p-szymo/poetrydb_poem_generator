@@ -10,7 +10,7 @@ I created a function prompting users to input a word count (1000 or fewer words,
 
 The poetry generator randomly chooses its first word from the dictionary's keys, then a random word within that key's value, which becomes the next word and the next key; it then chooses a random word within that second word's value, which becomes the next work and the next key, and on and on until the word count is reached.
 
-I also created several generators that employ the rhyming function from Allison Parrish's [pronouncing](https://github.com/aparrish/pronouncingpy) to change words at the end of every line, randomly throughout the generated text, and each word within the generated text.
+I also created an optional *to_rhyme* setting that employs the rhyming function from Allison Parrish's [pronouncing](https://github.com/aparrish/pronouncingpy) to change words at the end of every line, randomly throughout the generated text, and all the words within the generated text.
 
 
 ## Next steps
@@ -18,12 +18,9 @@ I also created several generators that employ the rhyming function from Allison 
 
 
 ## List of files
-- **functions.py** - text file with functions, from api calls to the final poetry generator.
-- **RHYME_functions.py** - copy of the above file with minor adjustments and 3 new functions employing Allison Parrish's [pronouncing](https://github.com/aparrish/pronouncingpy) rhymer
 - **poem_generator_workbook.ipynb** - the main workbook, polished, from beginning to end. One can start by opening from the JSON file.
-- **RHYME_poem_generator_workbook.ipynb** - copy of the above file with minor adjustments and rhyming functions
+- **functions.py** - text file with functions, from api calls to the final poetry generator.
 - **poems_dictionary.json** - the hero poetry dictionary.
-- **poems_dictionary.txt** - backed up as a text file.
 - **poems_raw.txt** - the initial string compiled from PoetryDB.
 - **scrap_files** folder - backups, old workbooks, old texts/jsons, and other scraps
 
