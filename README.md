@@ -22,6 +22,11 @@ I also created an optional *to_rhyme* setting that employs the rhyming function 
 - **functions.py** - text file with functions, from api calls to the final poetry generator.
 - **poems_dictionary.json** - the hero poetry dictionary.
 - **poems_raw.txt** - the initial string compiled from PoetryDB.
+- **app.py** - file with app layout and auto_pometizer function (reconfigured for use with Streamlit)
+- **Procfile** - requirement for Heroku deploy
+- **requirements.txt** - requirement for Heroku deploy
+- **setup.sh** - requirement for Heroku deploy
+- **README.md** - this very file!
 - **scrap_files** folder - backups, old workbooks, old texts/jsons, and other scraps
 
   - includes NLTK-tokenized version of dictionary with some punctuation (poetic apostrophes and hyphens)
