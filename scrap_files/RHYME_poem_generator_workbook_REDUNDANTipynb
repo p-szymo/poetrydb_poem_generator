@@ -4,7 +4,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Rudimentary poetry generator - RHYME EDITION"
+    "# auto_pometizer, a Markov-chain poetry generator -- RHYME EDITION"
    ]
   },
   {
@@ -12,8 +12,11 @@
    "metadata": {},
    "source": [
     "## Skip to end of notebook to get straight to generating poetry\n",
-    "* Open json file below (after \"Second milestone!\" cell) and run the function! No need to download anything.\n",
-    "* If running the code from the beginning, you may need to install certain packages, such as pronouncing."
+    "\n",
+    "- **Open the json file after \"Second milestone!\" cell) and run the function! No need to download anything :)**\n",
+    "\n",
+    "\n",
+    "- **If running the code from the beginning, you may need to install certain packages, such as [pronouncing](https://github.com/aparrish/pronouncingpy).**"
    ]
   },
   {
@@ -22,7 +25,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "!pip install pronouncing"
+    "# !pip install pronouncing"
    ]
   },
   {
@@ -38,13 +41,21 @@
    "metadata": {},
    "outputs": [],
    "source": [
+    "# custom functions\n",
+    "from functions import *\n",
     "from RHYME_functions import *\n",
+    "\n",
+    "# readers and necessary libraries\n",
     "from collections import defaultdict\n",
-    "import string\n",
     "import json\n",
     "import re\n",
+    "import string\n",
     "import random\n",
+    "\n",
+    "# word segmenter\n",
     "import wordninja\n",
+    "\n",
+    "# pronouncing library with rhyme detection\n",
     "import pronouncing as pr"
    ]
   },
@@ -61,6 +72,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
+    "# URL to grab author names\n",
     "base_url = \"http://poetrydb.org/author\""
    ]
   },
@@ -70,6 +82,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
+    "# function and check out a sample\n",
     "authors = author_grabber(base_url)\n",
     "authors[0]"
    ]
@@ -80,8 +93,13 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "titles = [title_grabber(author) for author in authors]\n",
-    "titles = [title for sublist in titles for title in sublist]\n",
+    "# loop over authors list to obtain titles for each\n",
+    "titles_grouped = [title_grabber(author) for author in authors]\n",
+    "\n",
+    "# loop over list of lists of titles grouped by author\n",
+    "titles = [title for author in titles_grouped for title in author]\n",
+    "\n",
+    "# check out a sample\n",
     "titles[0]"
    ]
   },
@@ -91,7 +109,8 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "poems = [poem_grabber(title) for title in titles]"
+    "# loop over titles list to obtain poems as strings\n",
+    "poems_list = [poem_grabber(title) for title in titles]"
    ]
   },
   {
@@ -100,7 +119,8 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "poems[0:2]"
+    "# check out a sample\n",
+    "poems_list[0:2]"
    ]
   },
   {
@@ -109,7 +129,8 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "len(titles), len(poems), type(poems)"
+    "# make sure everything got pulled\n",
+    "len(titles), len(poems_list), type(poems_list)"
    ]
   },
   {
@@ -118,7 +139,8 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "poems = \" \\n \".join(poems)"
+    "# join poems together into one string\n",
+    "poems_string = \" \\n \".join(poems)"
    ]
   },
   {
@@ -127,7 +149,8 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "len(poems), type(poems)"
+    "# check it some characteristics\n",
+    "len(poems_string), type(poems_string)"
    ]
   },
   {
@@ -136,8 +159,9 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "with open(\"poems_raw.txt\", \"w\") as output:\n",
-    "    output.write(poems)"
+    "# # SAVE IT\n",
+    "# with open(\"poems_raw.txt\", \"w\") as output:\n",
+    "#     output.write(poems)"
    ]
   },
   {
@@ -145,7 +169,7 @@
    "metadata": {},
    "source": [
     "## First milestone! One very long string of poetry.\n",
-    "* If you have any adjustments before turning into a dictionary, open the text file and proceed from here."
+    "- **If you have any adjustments before turning into a dictionary, open the text file and proceed from here.**"
    ]
   },
   {
@@ -154,8 +178,22 @@
    "metadata": {},
    "outputs": [],
    "source": [
+    "# custom functions\n",
+    "from functions import *\n",
+    "from RHYME_functions import *\n",
+    "\n",
+    "# necessary libraries\n",
+    "import re\n",
+    "from collections import defaultdict\n",
+    "\n",
+    "# word segmenter\n",
+    "import wordninja\n",
+    "\n",
+    "# LOAD RAW POEM STRING\n",
     "f = open(\"poems_raw.txt\", \"r\")\n",
     "poems_raw = f.read()\n",
+    "\n",
+    "# check out a sample\n",
     "poems_raw[:500]"
    ]
   },
@@ -163,7 +201,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "I want to keep the newline and tab characters, so I temporarily change them to different words. Since I'm eventually segmenting the string, I chose two words that don't appear in the poetry (since it's all pre-1900) and that the segmenter will recognize as a single word."
+    "- **I want to keep the newline and tab characters, so I temporarily change them to different words. Since I'm eventually segmenting the string, I chose two words that don't appear in the poetry (which is all pre-1900) and that the segmenter will recognize as a single word.**"
    ]
   },
   {
@@ -172,18 +210,34 @@
    "metadata": {},
    "outputs": [],
    "source": [
+    "# substitute endline characters\n",
     "poems_edit = re.sub(r'\\n', 'airplane', poems_raw)\n",
-    "poems_edit = re.sub(r'\\t', ' automobile', poems_edit)\n",
+    "\n",
+    "# substitute tab characters\n",
+    "poems_edit = re.sub(r'\\t', 'automobile', poems_edit)\n",
+    "\n",
+    "# check out a sample\n",
     "poems_edit[:500]"
    ]
   },
   {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "- **Since some of the original source material is formatted poorly, especially multiple words jammed together without spaces, I run the WordNinja segmenter to split them up.**\n",
+    "- **NOTE: there is some collateral damage here and some words that should not be segmented get segmented. For a different technique using a tokenizer, look at poem_generator_workbook_punct_token.ipynb in the scrap_files folder.**"
+   ]
+  },
+  {
    "cell_type": "code",
    "execution_count": null,
    "metadata": {},
    "outputs": [],
    "source": [
+    "# segment poem string into list of words\n",
     "poems_segmented = wordninja.split(poems_edit)\n",
+    "\n",
+    "# check out a sample\n",
     "poems_segmented[15:20]"
    ]
   },
@@ -191,7 +245,9 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Create a dictionary with each word present in the word list (poems_segmented) as the key and each word that follows that now-key as part of a list of values."
+    "- **Find any single letters (other than *a* and *i* and the very poetic *o*) that are hanging around, as they detract from the generated poems.**\n",
+    "\n",
+    "- **Replace them with 'automobile', which is currently the equivalent of '\\t', because you can never have enough tabs when trying to make a poem look more contemporary :P**"
    ]
   },
   {
@@ -200,11 +256,37 @@
    "metadata": {},
    "outputs": [],
    "source": [
+    "# list of letters minus a, i, and o\n",
+    "single_letters = ['b','c','d','e','f','g','h','j','k','l','m','n','p','q','r','s','t','u','v','w','x','y','z']\n",
+    "\n",
+    "# update list of words\n",
+    "poems_segmented = [word if word not in single_letters else word.replace(word, 'automobile') for word in poems_segmented]\n",
+    "\n",
+    "# check out a sample\n",
+    "poems_segmented[15:20]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "- **Create a dictionary with each word present in the word list (poems_segmented) as the key and each word that follows that now-key as part of a list of values.**"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# instantiate a dictionary\n",
     "poems_dictionary = defaultdict(list)\n",
     "\n",
+    "# create Markov dictionary\n",
     "for current_word, next_word in zip(poems_segmented, poems_segmented[1:]):\n",
     "    poems_dictionary[current_word].append(next_word)\n",
     "\n",
+    "# check out a sample\n",
     "poems_dictionary['land'][:5]"
    ]
   },
@@ -212,7 +294,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "After changing the 'airplane' and 'automobile' values back to newline and tab characters via the lines_tabs_creator function, I change their respective keys in the dictionary accordingly."
+    "- **After changing the 'airplane' and 'automobile' values back to newline and tab characters via the lines_tabs_creator function, I change their respective keys in the dictionary accordingly.**"
    ]
   },
   {
@@ -221,9 +303,14 @@
    "metadata": {},
    "outputs": [],
    "source": [
+    "# revert back to endline and tab characters\n",
     "poems_dictionary = lines_tabs_creator(poems_dictionary)\n",
+    "\n",
+    "# replace endline and tab keys\n",
     "poems_dictionary['\\n'] = poems_dictionary.pop('airplane')\n",
     "poems_dictionary['\\t'] = poems_dictionary.pop('automobile')\n",
+    "\n",
+    "# check out a sample\n",
     "poems_dictionary['land'][:5]"
    ]
   },
@@ -233,20 +320,11 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "f = open(\"poems_dictionary.json\",\"w\")\n",
-    "f.write(json.dumps(poems_dictionary))\n",
-    "f.close()"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "f = open(\"poems_dictionary.txt\",\"w\")\n",
-    "f.write(str(poems_dictionary))\n",
-    "f.close()"
+    "# # SAVE IT AS JSON\n",
+    "\n",
+    "# f = open(\"poems_dictionary.json\",\"w\")\n",
+    "# f.write(json.dumps(poems_dictionary))\n",
+    "# f.close()"
    ]
   },
   {
@@ -254,7 +332,7 @@
    "metadata": {},
    "source": [
     "## Second milestone! One very big dictionary.\n",
-    "* If you want to get right to generating some poems, open the json file and proceed from here."
+    "- **If you want to get right to generating some poems, proceed from here and run the auto_pometizer function after opening the json file.**"
    ]
   },
   {
@@ -263,9 +341,14 @@
    "metadata": {},
    "outputs": [],
    "source": [
+    "# custom functions\n",
+    "from functions import *\n",
     "from RHYME_functions import *\n",
+    "\n",
+    "# library to open json file\n",
     "import json\n",
     "\n",
+    "# open big dictionary!\n",
     "with open(\"poems_dictionary.json\", \"r\") as f:\n",
     "    poems_dictionary = json.load(f)"
    ]
@@ -296,6 +379,7 @@
     }
    ],
    "source": [
+    "# regular generator\n",
     "auto_pometizer(poems_dictionary)"
    ]
   },
@@ -303,14 +387,8 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Final milestone?! First poetry generator."
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "### NEXT UP: rhyming experiments"
+    "## Final milestone?! First poetry generator.\n",
+    "## THINK AGAIN: Rhyming experiments"
    ]
   },
   {
@@ -341,6 +419,7 @@
     }
    ],
    "source": [
+    "# generator with end words replaced with rhymes\n",
     "auto_pometizer_endline_rhymer(poems_dictionary)"
    ]
   },
@@ -369,6 +448,7 @@
     }
    ],
    "source": [
+    "# generator with random words replaced with rhymes\n",
     "auto_pometizer_random_rhymer(poems_dictionary)"
    ]
   },
@@ -393,15 +473,9 @@
     }
    ],
    "source": [
+    "# generator with all words replaced with rhymes\n",
     "auto_pometizer_full_rhymer(poems_dictionary)"
    ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": []
   }
  ],
  "metadata": {

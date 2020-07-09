@@ -1,15 +1,16 @@
 # auto_pometizer, a Markov-chain poetry generator
-- Gathered all the poetry available from the PoetryDB into a text file as one long string (lines separated by ' \n ').
+After gathering all the poetry available from [PoetryDB](https://github.com/thundercomb/poetrydb), I turned it into a text file as one long string (with lines separated by *\n*).
 
-  - Created a dictionary with each word in the string as a key and a list of the words that immediately follow each of those key words in the string.
+I created a dictionary with each word in the string as a key and a list of the words that immediately follow each of those key words in the string. I had to do some switcharoo maneuvering to include *\n*s and *\t*s among the keys and within the values of the poem dictionary.
   
-  - Had to do some switcharoo maneuvering to include '\n's and '\t's among the keys and within the values of the poem dictionary.
-  
-- Created a function prompting users to input a word count (1000 or fewer words, **note: '\n's and '\t's are included in the count**)
+I created a function prompting users to input a word count (1000 or fewer words, **note: *\n*s and *\t*s are included in the count**).
 
-- Poetry generator randomly chooses a first key, then a random word within that key's value, which becomes the next key, then chooses a random word within that second word's value, and on and on until the word count is reached.
 
-- Applied Allison Parrish's [pronouncing](https://github.com/aparrish/pronouncingpy) to certain words in various functions.
+## How it works
+
+The poetry generator randomly chooses its first word from the dictionary's keys, then a random word within that key's value, which becomes the next word and the next key; it then chooses a random word within that second word's value, which becomes the next work and the next key, and on and on until the word count is reached.
+
+I also created several generators that employ the rhyming function from Allison Parrish's [pronouncing](https://github.com/aparrish/pronouncingpy) to change words at the end of every line, randomly throughout the generated text, and each word within the generated text.
 
 
 ## Next steps
