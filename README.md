@@ -1,22 +1,25 @@
-# [auto_pometizer](https://polar-earth-97611.herokuapp.com/), a Markov-chain poetry generator
-After gathering all the poetry available from [PoetryDB](https://github.com/thundercomb/poetrydb), I turned it into a text file as one long string (with lines separated by *\n*).
+# [auto_pometizer](https://polar-earth-97611.herokuapp.com/), a Markov chain poetry generator
+After gathering all the poetry available from [PoetryDB](https://github.com/thundercomb/poetrydb), I turn it into a text file as one long string (with lines separated by *\n*).
 
-I created a dictionary with each word in the string as a key and a list of the words that immediately follow each of those key words in the string. I had to do some switcharoo maneuvering to include *\n*s and *\t*s among the keys and within the values of the poem dictionary.
+I then create a dictionary with each word in the string as a key and a list of the words that immediately follow each of those key words in the string. I had to do some switcharoo maneuvering to include newline (\n) and tab (\t) characters among the keys and within the values of the poem dictionary.
   
-I created a function prompting users to input a word count (1000 or fewer words, **note: *\n*s and *\t*s are included in the count**).
+Within the auto-pometizer function, you can then input a word count (1000 or fewer words, **note: newline and tab characters are included in the count**), as well as whether or not to use a rhyming function (of which there are three varieties).
 
-Then I turned it into an [app](https://polar-earth-97611.herokuapp.com/)!
+Best of all, it is now an [app](https://polar-earth-97611.herokuapp.com/)!
+
+## To use the app locally, run the following in Terminal (after cloning the repo):
+```streamlit run app.py```
 
 
 ## How it works
 
-The poetry generator randomly chooses its first word from the dictionary's keys, then a random word within that key's value, which becomes the next word and the next key; it then chooses a random word within that second word's value, which becomes the next work and the next key, and on and on until the word count is reached.
+The poetry generator randomly chooses its first word from the dictionary's keys, then a random word within that key's value, which becomes the next word and the next key; it then chooses a random word within that second word's value, which becomes the next word and the next key, and on and on until the word count is reached.
 
-I also created an optional *to_rhyme* setting that employs the rhyming function from Allison Parrish's [pronouncing](https://github.com/aparrish/pronouncingpy) to change words at the end of every line, randomly throughout the generated text, and all the words within the generated text.
+The optional *to_rhyme* setting employs the rhyming function from Allison Parrish's [Pronouncing](https://github.com/aparrish/pronouncingpy) to change words at the end of every line, randomly throughout the generated text, and all the words within the generated text.
 
 
 ## List of files
-- **poem_generator_workbook.ipynb** - the main workbook, polished, from beginning to end. One can start by opening from the JSON file.
+- **auto_pometizer.ipynb** - the main workbook, polished, from beginning to end. One can start by opening from the Markov dictionary.
 - **functions.py** - text file with functions, from api calls to the final poetry generator.
 - **poems_dictionary.json** - the hero poetry dictionary.
 - **poems_raw.txt** - the initial string compiled from PoetryDB.
