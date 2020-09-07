@@ -47,7 +47,7 @@ def title_grabber(author):
 
 ## call API and create a list of the lines of a poem
 ## convert list to a string, joining them with '\n' 
-def poem_grabber(title):
+def poem_grabber(title, remove_punct=True):
     
     '''Input a poem title as a string.
        Output poem as a '\n'-separated string.'''
@@ -73,13 +73,14 @@ def poem_grabber(title):
         response = requests.get(base_url + url_addon)
         # create list
         lines = response.json()[0]['lines']
-        # join list to a string and lowercase
-        poem = " \n ".join(lines).lower()
-        # remove punctuation, deal with special characters, and replace long spaces with tabs
-        poem = poem.translate(str.maketrans('', '', string.punctuation)).replace('  ', ' \t ')\
-                                                                        .replace('—', '')\
-                                                                        .replace('‘','')\
-                                                                        .replace('’','')
+        # join list to a string, make lowercase, deal with certain characters, 
+        # and replace long spaces with tabs
+        poem = " \n ".join(lines).lower().replace("’", "'").replace("‘","'").replace('-', ' ').\
+                                            replace('—', ' ').replace('  ', ' \t ')
+        
+        if remove_punct:
+            # remove punctuation (optional)
+            poem = poem.translate(str.maketrans('', '', string.punctuation))
         
     # if an error occurs, print title and make the poem a tab
     except:

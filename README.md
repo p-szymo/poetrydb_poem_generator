@@ -19,17 +19,17 @@ The optional *to_rhyme* setting employs the rhyming function from Allison Parris
 
 
 ## List of files
+- **scrap_files** folder - backups, old workbooks, old texts/jsons, and other scraps.
+  - includes NLTK-tokenized version of dictionary with some punctuation (poetic apostrophes and hyphens)
+    - lacks some proper segmentation but not as oversegmented as the wordninja version
+- **.gitignore** - list of files to ignore.
+- **Procfile** - requirement for Heroku deploy.
+- **README.md** - this very file!
+- **app.py** - file with app layout and auto_pometizer function (reconfigured for use with Streamlit).
 - **auto_pometizer.ipynb** - the main workbook, polished, from beginning to end. One can start by opening from the Markov dictionary.
 - **functions.py** - text file with functions, from api calls to the final poetry generator.
 - **poems_dictionary.json** - the hero poetry dictionary.
 - **poems_raw.txt** - the initial string compiled from PoetryDB.
-- **app.py** - file with app layout and auto_pometizer function (reconfigured for use with Streamlit)
-- **Procfile** - requirement for Heroku deploy
-- **requirements.txt** - requirement for Heroku deploy
-- **setup.sh** - requirement for Heroku deploy
-- **README.md** - this very file!
-- **scrap_files** folder - backups, old workbooks, old texts/jsons, and other scraps
-
-  - includes NLTK-tokenized version of dictionary with some punctuation (poetic apostrophes and hyphens)
-  
-    - lacks some proper segmentation but not as oversegmented as the wordninja version
+- **requirements.txt** - requirement for Heroku deploy.
+- **scraping_sandbox.ipynb** - notebook with an example of scraping the work of one particular poet.
+- **setup.sh** - requirement for Heroku deploy.
