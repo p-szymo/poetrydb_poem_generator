@@ -1,9 +1,9 @@
 # [auto_pometizer](https://polar-earth-97611.herokuapp.com/), a Markov chain poetry generator
-After gathering all the poetry available from [PoetryDB](https://github.com/thundercomb/poetrydb), I turn it into a text file as one long string (with lines separated by *\n*).
+After gathering all the poetry available from [PoetryDB](https://github.com/thundercomb/poetrydb), I turn it into a text file as one long string (with lines separated by ```\n```).
 
-I then create a dictionary with each word in the string as a key and a list of the words that immediately follow each of those key words in the string. I had to do some switcharoo maneuvering to include newline (\n) and tab (\t) characters among the keys and within the values of the poem dictionary.
+I then create a dictionary with each word in the string as a key and a list of the words that immediately follow each of those key words in the string. I had to do some switcharoo maneuvering to include newline (```\n```) and tab (```\t```) characters among the keys and within the values of the poem dictionary.
   
-Within the auto-pometizer function, you can then input a word count (1000 or fewer words, **note: newline and tab characters are included in the count**), as well as whether or not to use a rhyming function (of which there are three varieties).
+Within the auto-pometizer function, you can then input a word count (1000 or fewer words, *note: newline and tab characters are included in the count*), as well as whether or not to use a rhyming function (of which there are three varieties).
 
 Best of all, it is now an [app](https://polar-earth-97611.herokuapp.com/)!
 
