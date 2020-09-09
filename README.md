@@ -15,7 +15,7 @@ Best of all, it is now an [app](https://polar-earth-97611.herokuapp.com/)!
 
 The poetry generator randomly chooses its first word from the dictionary's keys, then a random word within that key's value, which becomes the next word and the next key; it then chooses a random word within that second word's value, which becomes the next word and the next key, and on and on until the word count is reached.
 
-The optional *to_rhyme* setting employs the rhyming function from Allison Parrish's [Pronouncing](https://github.com/aparrish/pronouncingpy) to change words at the end of every line, randomly throughout the generated text, and all the words within the generated text.
+Within the ```auto_pometizer``` function, the optional ```to_rhyme``` argument employs the rhyming function from Allison Parrish's [Pronouncing](https://github.com/aparrish/pronouncingpy) to change words at the end of every line (```to_rhyme='endline'```), randomly throughout the generated text (```to_rhyme='random'```), and all the words within the generated text (```to_rhyme='all'```).
 
 
 ## List of files
@@ -27,7 +27,7 @@ The optional *to_rhyme* setting employs the rhyming function from Allison Parris
 - **README.md** - this very file!
 - **app.py** - file with app layout and auto_pometizer function (reconfigured for use with Streamlit).
 - **auto_pometizer.ipynb** - the main workbook, polished, from beginning to end. One can start by opening from the Markov dictionary.
-- **functions.py** - text file with functions, from api calls to the final poetry generator.
+- **functions.py** - text file with functions, from API calls to the final poetry generator.
 - **poems_dictionary.json** - the hero poetry dictionary.
 - **poems_raw.txt** - the initial string compiled from PoetryDB.
 - **requirements.txt** - requirement for Heroku deploy.
