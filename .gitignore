@@ -34,15 +34,12 @@
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-<<<<<<< HEAD
 Thumbs.db
 
 # Manually added
 .ipynb_checkpoints/
 __pycache__/
 
-poem_generator_workbook_punct_token-Copy1.ipynb
-auto_pometizer-Copy1.ipynb
-=======
-Thumbs.db
->>>>>>> e5a738109c495f0cf0e586c198953a49f1ca5718
+
+# backups
+*-Copy1.ipynb
